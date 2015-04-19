@@ -2,7 +2,6 @@ package my.company;
 
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.form.AjaxFormChoiceComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
@@ -52,12 +51,12 @@ public class RadioGroupPage extends WebPage {
                 info("selected person: " + group.getDefaultModelObjectAsString());
             }
         };
-        group.add(new AjaxFormChoiceComponentUpdatingBehavior() {
-            protected void onUpdate(AjaxRequestTarget target) {
-                // Ajax actions here
-                System.out.println("The selected value is " + getComponent().getDefaultModelObjectAsString());
-            }
-        }).setOutputMarkupId(true);
+        group.add(new StarBehavior() {
+    		protected void onUpdate(AjaxRequestTarget target) {
+    		    // Ajax actions here
+    		    System.out.println("The selected value is " + getComponent().getDefaultModelObjectAsString());
+    		}
+        });
         group.setOutputMarkupId(true);
         this.setOutputMarkupId(true);
         form.setOutputMarkupId(true);
